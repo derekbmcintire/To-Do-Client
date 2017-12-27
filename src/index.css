@@ -1,0 +1,22 @@
+body {
+  margin: 0;
+  padding: 0;
+  font-family: sans-serif;
+}
+
+.nav-item {
+  float: right;
+}
+
+.current-page {
+  background-color: green;
+}
+
+.nav {
+  padding-right: 25px;
+}
+
+.sign-in {
+  margin: 0 auto;
+  width: 400px;
+}
