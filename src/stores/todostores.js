@@ -44,11 +44,12 @@ class TodoStore extends EventEmitter {
 }
 
 // creates a new instance of the TodoStore
-const todoStore = new TodoStore
+const todoStore = new TodoStore()
 
 // registers this file as a listener on the dispatcher
 // binds 'this' within the handleActions function to todoStore
 dispatcher.register(todoStore.handleActions.bind(todoStore))
 
 window.dispatcher = dispatcher
+window.todoStore = todoStore
 export default todoStore

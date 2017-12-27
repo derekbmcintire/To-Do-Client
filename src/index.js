@@ -1,6 +1,6 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
-import {Route, Link, BrowserRouter as Router} from 'react-router-dom'
+import {Route, BrowserRouter as Router} from 'react-router-dom'
 import '../node_modules/bootstrap/dist/css/bootstrap.min.css'
 import './index.css';
 import Header from './components/Header'

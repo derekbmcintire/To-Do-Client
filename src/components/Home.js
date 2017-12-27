@@ -26,8 +26,11 @@ class Home extends Component {
     })
   }
 
-  createToDo() {
-    TodoActions.createToDo(Date.now())
+  createToDo(e) {
+    e.preventDefault()
+    const item = document.getElementById('new-do').value
+    TodoActions.createToDo(item)
+    document.getElementById('new-do').value = ''
   }
 
   render() {
@@ -45,7 +48,10 @@ class Home extends Component {
       })
       return (
         <div>
-        <button onClick={this.createToDo.bind(this)}>Create!</button>
+        <form onSubmit={this.createToDo.bind(this)}>
+        <input id='new-do' />
+        <button type='submit'>Create!</button>
+        </form>
         <h1>Todos</h1>
         <ul>{TodoComponents}</ul>
         </div>
