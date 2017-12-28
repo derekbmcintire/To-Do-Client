@@ -5,13 +5,13 @@ const Header = (props) => {
     return (
       <ul className="nav justify-content-end">
         <li className="nav-item">
-          <Link className="nav-link active" to="/">Home</Link>
+          <Link className="nav-link active" to="/">To Do List</Link>
         </li>
         <li className="nav-item">
-          <a className="nav-link user" href="/user">User</a>
+          <Link className="nav-link user" to="/user">User</Link>
         </li>
         <li className="nav-item">
-          <a className="nav-link" href="/sign-in">Sign-In</a>
+          <Link className="nav-link" to="/sign-in">Sign-In</Link>
         </li>
       </ul>
     )

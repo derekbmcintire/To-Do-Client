@@ -8,6 +8,9 @@ class Home extends Component {
   // sets initial state of Home
   constructor() {
     super()
+    // prevents memory leak by binding getTodos function to current
+    // instance of this component
+    this.getTodos = this.getTodos.bind(this)
     this.state = {
       // sets todos to the getAll function in TodoStore, which returns all
       // current todos
@@ -19,11 +22,20 @@ class Home extends Component {
   // event listeners
   componentWillMount() {
     // listens for a change event to be emitted and sets state
-    TodoStore.on('change', () => {
+    TodoStore.on('change', this.getTodos)
+    console.log('count: ', TodoStore.listenerCount('change'))
+  }
+
+  // removes event listener to prevent memory leak
+  componentWillUnmount() {
+    TodoStore.removeListener('change', this.getTodos)
+  }
+
+  // gets all current list items
+  getTodos() {
       this.setState({
         todos: TodoStore.getAll()
       })
-    })
   }
 
   createToDo(e) {
@@ -52,7 +64,7 @@ class Home extends Component {
         <input id='new-do' />
         <button type='submit'>Create!</button>
         </form>
-        <h1>Todos</h1>
+        <h1>To Do List</h1>
         <ul>{TodoComponents}</ul>
         </div>
       )

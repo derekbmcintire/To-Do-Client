@@ -12,6 +12,15 @@ class TodoStore extends EventEmitter {
     this.todos = []
     }
 
+    completeItem(id) {
+      this.todos.forEach((todo) => {
+        if (todo.id === id) {
+          todo.complete = true
+        }
+      })
+      this.emit('change')
+    }
+
     // create a new todo
     createToDo(text) {
       // creates a timestamp to use as an id
@@ -39,6 +48,9 @@ class TodoStore extends EventEmitter {
     handleActions(action) {
     if (action.type === 'CREATE_TODO') {
       this.createToDo(action.text)
+    }
+    if (action.type === 'COMPLETE_ITEM') {
+      this.completeItem(action.id)
     }
     }
 }

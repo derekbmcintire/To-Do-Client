@@ -12,6 +12,18 @@ body {
   background-color: green;
 }
 
+.icon {
+  color: green;
+}
+
+.item {
+  border-bottom: 1px solid black;
+  cursor: pointer;
+  margin: 0 auto;
+  max-width: 400px;
+  list-style-type: none
+}
+
 .nav {
   padding-right: 25px;
 }
@@ -19,4 +31,8 @@ body {
 .sign-in {
   margin: 0 auto;
   width: 400px;
+}
+
+.status {
+  display: inline-block;
 }

@@ -1,8 +1,13 @@
 import React, { Component } from 'react'
+import * as TodoActions from '../Actions/TodoActions'
 
 class Todo extends Component {
   constructor(props) {
     super()
+  }
+
+  completeItem() {
+    TodoActions.completeItem(this.props.id)
   }
 
   render() {
@@ -19,9 +24,8 @@ class Todo extends Component {
     }
 
     return (
-      <li>
-        <span>{text}</span>
-        <span>{icon}</span>
+      <li className='item' onClick={this.completeItem.bind(this)}>
+        <h3><span className='icon'>{icon}</span> {text}</h3>
       </li>
     )
   }

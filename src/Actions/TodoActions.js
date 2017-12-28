@@ -13,3 +13,10 @@ export function deleteToDo(id) {
     id
   })
 }
+
+export function completeItem(id) {
+  dispatcher.dispatch({
+    type: 'COMPLETE_ITEM',
+    id
+  })
+}
