@@ -27,10 +27,11 @@ class Home extends Component {
     // listens for a change event to be emitted and sets state
     TodoStore.on('change', this.getTodos)
     this.user = UserStore.user
+    console.log(this.user)
   }
 
   componentDidMount() {
-    if (this.user.email === '') {
+    if (this.user.email === null) {
       $('#welcome').hide()
     } else {
       $('#welcome').show()

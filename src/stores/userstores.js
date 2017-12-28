@@ -7,18 +7,27 @@ class UserStore extends EventEmitter {
   constructor() {
     super()
     this.user = {
-      email: '',
-      token: ''
+      id: null,
+      email: null,
+      token: null
     }
     }
 
     signIn(data) {
       this.user = {
+        id: data.user.id,
         email: data.user.email,
         token: data.user.token
       }
-      console.log('store signIn ', this.user[0])
       this.emit('change')
+    }
+
+    signOut() {
+      this.user = {
+        id: null,
+        email: null,
+        token: null
+      }
     }
 
     getAll() {
@@ -28,6 +37,8 @@ class UserStore extends EventEmitter {
     handleActions(action) {
     if (action.type === 'SIGN_IN') {
       this.signIn(action.data)
+    } else if (action.type === 'SIGN_OUT') {
+      this.signOut()
     }
     }
 }

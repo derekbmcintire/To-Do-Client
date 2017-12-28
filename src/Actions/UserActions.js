@@ -7,3 +7,9 @@ export function signIn(data) {
   })
   console.log('data in useractions', data)
 }
+
+export function signOut() {
+  dispatcher.dispatch({
+    type: 'SIGN_OUT'
+  })
+}
