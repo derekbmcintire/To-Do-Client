@@ -7,9 +7,9 @@ export function createToDo(text) {
   })
 }
 
-export function deleteToDo(id) {
+export function deleteItem(id) {
   dispatcher.dispatch({
-    type: 'DELETE_TODO',
+    type: 'DELETE_ITEM',
     id
   })
 }

@@ -10,6 +10,10 @@ class Todo extends Component {
     TodoActions.completeItem(this.props.id)
   }
 
+  deleteItem() {
+    TodoActions.deleteItem(this.props.id)
+  }
+
   render() {
     const { complete, edit, text } = this.props
 
@@ -24,8 +28,9 @@ class Todo extends Component {
     }
 
     return (
-      <li className='item' onClick={this.completeItem.bind(this)}>
-        <h3><span className='icon'>{icon}</span> {text}</h3>
+      <li className='item' >
+        <h3 className='list-item' onClick={this.completeItem.bind(this)}><span className={String(this.props.complete)}>{icon}</span> {text} <span><button className='delete' onClick={this.deleteItem.bind(this)}>delete</button></span></h3>
+
       </li>
     )
   }

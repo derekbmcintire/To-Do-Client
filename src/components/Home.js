@@ -3,6 +3,9 @@ import Todo from './Todo'
 // using * as creates an object with all exports
 import * as TodoActions from '../Actions/TodoActions'
 import TodoStore from '../stores/todostores'
+import UserStore from '../stores/userstores'
+import '../../node_modules/bootstrap/dist/css/bootstrap.min.css'
+const $ = require('jquery')
 
 class Home extends Component {
   // sets initial state of Home
@@ -23,7 +26,15 @@ class Home extends Component {
   componentWillMount() {
     // listens for a change event to be emitted and sets state
     TodoStore.on('change', this.getTodos)
-    console.log('count: ', TodoStore.listenerCount('change'))
+    this.user = UserStore.user
+  }
+
+  componentDidMount() {
+    if (this.user.email === '') {
+      $('#welcome').hide()
+    } else {
+      $('#welcome').show()
+    }
   }
 
   // removes event listener to prevent memory leak
@@ -59,13 +70,14 @@ class Home extends Component {
         return <Todo key={todo.id} {...todo} />
       })
       return (
-        <div>
-        <form onSubmit={this.createToDo.bind(this)}>
-        <input id='new-do' />
-        <button type='submit'>Create!</button>
+        <div className='todo'>
+        <p id='welcome'>welcome {this.user.email}</p>
+        <form className='form-inline' onSubmit={this.createToDo.bind(this)}>
+        <input className='form-control form-control-lg' id='new-do' />
+        <button type='submit' className='btn btn-outline-success'>Add item</button>
         </form>
         <h1>To Do List</h1>
-        <ul>{TodoComponents}</ul>
+        <ul className='todos'>{TodoComponents}</ul>
         </div>
       )
   }
