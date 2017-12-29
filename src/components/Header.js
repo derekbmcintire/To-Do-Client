@@ -13,17 +13,19 @@ class Header extends Component {
     this.state = {
       // sets todos to the getAll function in TodoStore, which returns all
       // current todos
-      user: UserStore.user
+      // user: UserStore.user
     }
   }
 
   componentWillMount() {
+    this.user = UserStore.user
     UserStore.on('change', () => {
       this.user = UserStore.user
     })
   }
 
   componentDidMount() {
+    $('#signed-in-as').hide()
     $('.sign-out').hide()
   }
 
@@ -60,17 +62,20 @@ class Header extends Component {
 
   render() {
     return (
-      <ul className="nav justify-content-end">
-        <li className="nav-item">
-          <Link className="nav-link active" to="/">To Do List</Link>
-        </li>
-        <li className="nav-item">
-          <Link className="nav-link sign-link" to="/sign-in">Sign-In</Link>
-        </li>
-        <li className="nav-item">
-          <Link className="nav-link sign-out" to="/sign-in" onClick={this.onSignOut.bind(this)}>Sign Out</Link>
-        </li>
-      </ul>
+      <div>
+        <h5 id='signed-in-as'>Signed in as: {this.user.username}</h5>
+        <ul className="nav justify-content-end">
+          <li className="nav-item">
+            <Link className="nav-link active" to="/">To Do List</Link>
+          </li>
+          <li className="nav-item">
+            <Link className="nav-link sign-link" to="/sign-in">Sign-In</Link>
+          </li>
+          <li className="nav-item">
+            <Link className="nav-link sign-out" to="/sign-in" onClick={this.onSignOut.bind(this)}>Sign Out</Link>
+          </li>
+        </ul>
+      </div>
     )
   }
 }

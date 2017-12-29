@@ -41,6 +41,7 @@ class Sign extends Component {
 
   signInSuccess(data) {
     $('.sign-out').show()
+    $('#signed-in-as').show()
     $('.sign-link').hide()
     UserActions.signIn(data)
   }
@@ -76,6 +77,8 @@ class Sign extends Component {
 
   signUpSuccess() {
     console.log('success!')
+    $('.form-control').val('')
+    $('.up-check').text(" \u2714")
   }
 
   signUpFailure() {
@@ -87,6 +90,7 @@ class Sign extends Component {
     const currentVals = {
       credentials: {
         email: document.getElementById('up-email').value,
+        username: document.getElementById('up-user').value,
         password: document.getElementById('up-password').value,
         password_confirmation: document.getElementById('up-password-confirmation').value
       }
@@ -100,23 +104,30 @@ class Sign extends Component {
   return(
     <div className='sign'>
     <div className='sign-in'>
+      <h3>Sign In</h3>
       <form>
         <div className="form-group">
           <label>Email address</label>
-          <input type="email" id='in-email' className="form-control" aria-describedby="emailHelp" placeholder="Enter email" />
+          <input type="email" id='in-email' className="form-control" placeholder="Enter email" />
         </div>
         <div className="form-group">
           <label>Password</label>
           <input type="password" id='in-password' className="form-control"  placeholder="Password" />
         </div>
-        <button type="submit" onClick={this.onSignIn.bind(this)} className="btn btn-primary">Submit</button>
+        <button type="submit" onClick={this.onSignIn.bind(this)} className="btn btn-primary">Sign In</button><span className='in-check'></span>
       </form>
     </div>
+    <br />
     <div className='sign-up'>
+      <h3>Sign Up</h3>
       <form id='sign-up-form'>
         <div className="form-group">
           <label>Email address</label>
-          <input type="email" id='up-email' className="form-control" aria-describedby="emailHelp" placeholder="Enter email" />
+          <input type="email" id='up-email' className="form-control" placeholder="Enter email" />
+        </div>
+        <div className="form-group">
+          <label>User Name</label>
+          <input type="email" id='up-user' className="form-control" placeholder="Enter user name" />
         </div>
         <div className="form-group">
           <label>Password</label>
@@ -126,7 +137,7 @@ class Sign extends Component {
           <label>Password Confirmation</label>
           <input type="password" id='up-password-confirmation' className="form-control"  placeholder="Password Confirmation" />
         </div>
-        <button type="submit" onClick={this.onSignUp.bind(this)} className="btn btn-primary">Submit</button>
+        <button type="submit" onClick={this.onSignUp.bind(this)} className="btn btn-primary">Sign Up</button><span className='up-check'></span>
       </form>
     </div>
   </div>

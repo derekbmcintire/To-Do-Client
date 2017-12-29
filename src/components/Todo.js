@@ -17,7 +17,9 @@ class Todo extends Component {
   render() {
     const { complete, edit, text } = this.props
 
-    const icon = complete ? "\u2714" : "\u2716"
+    const icon = complete ? "\u2714" : "\u2610"
+
+    const deleteIcon = "\u2716"
 
     if (edit) {
       return (
@@ -28,9 +30,13 @@ class Todo extends Component {
     }
 
     return (
-      <li className='item' >
-        <h3 className='list-item' onClick={this.completeItem.bind(this)}><span className={String(this.props.complete)}>{icon}</span> {text} <span><button className='delete' onClick={this.deleteItem.bind(this)}>delete</button></span></h3>
-
+      <li className='item row' >
+      <div className='col-xs-11'>
+        <h3 className='list-item' onClick={this.completeItem.bind(this)}><span className={String(this.props.complete)}>{icon}</span> {text} </h3>
+        </div>
+        <div className='col-xs-1'>
+        <button className='delete' onClick={this.deleteItem.bind(this)}>{deleteIcon}</button>
+        </div>
       </li>
     )
   }

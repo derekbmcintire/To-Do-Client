@@ -31,7 +31,7 @@ class Home extends Component {
   }
 
   componentDidMount() {
-    if (this.user.email === null) {
+    if (this.user.username === null) {
       $('#welcome').hide()
     } else {
       $('#welcome').show()
@@ -49,6 +49,17 @@ class Home extends Component {
         todos: TodoStore.getAll()
       })
   }
+
+  // sendNewItem(data) {
+  //     return $.ajax({
+  //       url: 'localhost:4741/todos',
+  //       method: 'POST',
+  //       headers: {
+  //         Authorization: 'Token token=' + this.user.token
+  //       },
+  //       data
+  //     })
+  // }
 
   createToDo(e) {
     e.preventDefault()
@@ -72,13 +83,16 @@ class Home extends Component {
       })
       return (
         <div className='todo'>
-        <p id='welcome'>welcome {this.user.email}</p>
-        <form className='form-inline' onSubmit={this.createToDo.bind(this)}>
-        <input className='form-control form-control-lg' id='new-do' />
-        <button type='submit' className='btn btn-outline-success'>Add item</button>
-        </form>
-        <h1>To Do List</h1>
-        <ul className='todos'>{TodoComponents}</ul>
+          <form className='add-form' onSubmit={this.createToDo.bind(this)}>
+            <input className='form-control form-control-lg add' id='new-do' />
+            <button type='submit' className='btn btn-outline-success add-item add'>Add item</button>
+          </form>
+          <input className='list-title form-control form-control-lg' placeholder='To Do List' />
+          <ul className='todos'>
+          {TodoComponents}
+          <br />
+          <button className='save-list btn'>Save</button>
+          </ul>
         </div>
       )
   }

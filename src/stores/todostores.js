@@ -31,16 +31,6 @@ class TodoStore extends EventEmitter {
       this.emit('change')
     }
 
-    // onCreate() {
-    //   return $.ajax({
-    //     url: 'localhost:4741/todos',
-    //     method: 'POST',
-    //     headers: {
-    //       Authorization: 'Token token=' + store.user.token
-    //     }
-    //   })
-    // }
-
     // create a new todo
     createToDo(text) {
       // creates a timestamp to use as an id
@@ -55,6 +45,8 @@ class TodoStore extends EventEmitter {
 
       // sends a change notice to the event listener
       this.emit('change')
+
+
     }
 
     // returns all todos
@@ -74,6 +66,9 @@ class TodoStore extends EventEmitter {
     }
     if (action.type === 'DELETE_ITEM') {
       this.deleteItem(action.id)
+    }
+    if (action.type === 'SIGN_OUT') {
+      this.todos = []
     }
     }
 }

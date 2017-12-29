@@ -9,6 +9,7 @@ class UserStore extends EventEmitter {
     this.user = {
       id: null,
       email: null,
+      username: null,
       token: null
     }
     }
@@ -17,6 +18,7 @@ class UserStore extends EventEmitter {
       this.user = {
         id: data.user.id,
         email: data.user.email,
+        username: data.user.username,
         token: data.user.token
       }
       this.emit('change')
@@ -26,6 +28,7 @@ class UserStore extends EventEmitter {
       this.user = {
         id: null,
         email: null,
+        username: null,
         token: null
       }
     }
