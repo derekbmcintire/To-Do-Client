@@ -6,6 +6,7 @@ import './index.css';
 import Header from './components/Header'
 import Home from './components/Home'
 import Sign from './components/Sign'
+import Lists from './components/Lists'
 import registerServiceWorker from './registerServiceWorker'
 const $ = require('jquery')
 
@@ -18,6 +19,7 @@ class App extends React.Component {
           <hr/>
           <Route exact path="/" component={Home} />
           <Route path="/sign-in" component={Sign} />
+          <Route path="/my-lists" component={Lists} />
         </div>
       </Router>
     )

@@ -21,6 +21,10 @@ class Home extends Component {
     }
   }
 
+  clearList() {
+    TodoActions.clearList()
+  }
+
   // this happens once on page load and not again, so it's the best place to add
   // event listeners
   componentWillMount() {
@@ -50,16 +54,36 @@ class Home extends Component {
       })
   }
 
-  // sendNewItem(data) {
-  //     return $.ajax({
-  //       url: 'localhost:4741/todos',
-  //       method: 'POST',
-  //       headers: {
-  //         Authorization: 'Token token=' + this.user.token
-  //       },
-  //       data
-  //     })
-  // }
+  saveList(data) {
+      return $.ajax({
+        url: 'http://localhost:4741/lists',
+        method: 'POST',
+        headers: {
+          Authorization: 'Token token=' + this.user.token
+        },
+        data
+      })
+  }
+
+  saveListSuccess() {
+    console.log('save great success')
+  }
+
+  saveListFailure() {
+    console.log('save great failure')
+  }
+
+  onSaveList() {
+    const data = {
+      list: {
+        title: document.getElementById('list-title').value,
+        items: this.state.todos
+      }
+    }
+    this.saveList(data)
+      .then(this.saveListSuccess)
+      .catch(this.saveListFailure)
+  }
 
   createToDo(e) {
     e.preventDefault()
@@ -73,12 +97,13 @@ class Home extends Component {
     // ?I am not sure why todos needs to be wrapped in braces
     // since this.state is already an object
     const {todos} = this.state
-
+    console.log('todos ', todos)
       // map through all the current todos and return a new
       // Todo component
       // set the key to the current todo id
       // ?use the ES6 spread operator to pass an object of props
       const TodoComponents = todos.map((todo) => {
+        console.log(todo)
         return <Todo key={todo.id} {...todo} />
       })
       return (
@@ -87,11 +112,12 @@ class Home extends Component {
             <input className='form-control form-control-lg add' id='new-do' />
             <button type='submit' className='btn btn-outline-success add-item add'>Add item</button>
           </form>
-          <input className='list-title form-control form-control-lg' placeholder='To Do List' />
+          <input id='list-title' className='list-title form-control form-control-lg' placeholder='To Do List' />
           <ul className='todos'>
           {TodoComponents}
           <br />
-          <button className='save-list btn'>Save</button>
+          <button id='clear-list' className='btn list-btn' onClick={this.clearList.bind(this)}>Clear</button>
+          <button id='save-list' className='btn list-btn' onClick={this.onSaveList.bind(this)}>Save</button>
           </ul>
         </div>
       )

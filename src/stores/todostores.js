@@ -45,8 +45,11 @@ class TodoStore extends EventEmitter {
 
       // sends a change notice to the event listener
       this.emit('change')
+    }
 
-
+    clearList() {
+      this.todos = []
+      this.emit('change')
     }
 
     // returns all todos
@@ -68,7 +71,10 @@ class TodoStore extends EventEmitter {
       this.deleteItem(action.id)
     }
     if (action.type === 'SIGN_OUT') {
-      this.todos = []
+      this.clearList()
+    }
+    if (action.type === 'CLEAR_LIST') {
+      this.clearList()
     }
     }
 }

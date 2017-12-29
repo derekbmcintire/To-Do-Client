@@ -20,3 +20,9 @@ export function completeItem(id) {
     id
   })
 }
+
+export function clearList() {
+  dispatcher.dispatch({
+    type: 'CLEAR_LIST'
+  })
+}

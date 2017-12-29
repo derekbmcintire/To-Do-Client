@@ -7,21 +7,19 @@ const $ = require('jquery')
 class Header extends Component {
   constructor() {
     super()
-    // prevents memory leak by binding getTodos function to current
-    // instance of this component
-
     this.state = {
-      // sets todos to the getAll function in TodoStore, which returns all
-      // current todos
-      // user: UserStore.user
+
     }
   }
 
   componentWillMount() {
-    this.user = UserStore.user
-    UserStore.on('change', () => {
-      this.user = UserStore.user
+    this.setState({
+      user: UserStore.getAll()
     })
+    // this.user = UserStore.user
+    // UserStore.on('change', () => {
+    //   this.user = UserStore.user
+    // })
   }
 
   componentDidMount() {
@@ -41,12 +39,12 @@ class Header extends Component {
   }
 
   signOut() {
-    console.log('passing id ', this.user.id)
+    console.log('passing id ', UserStore.user.id)
     return $.ajax({
-      url: 'http://localhost:4741/sign-out/' + this.user.id,
+      url: 'http://localhost:4741/sign-out/' + UserStore.user.id,
       method: 'DELETE',
       headers: {
-        Authorization: 'Token token=' + this.user.token
+        Authorization: 'Token token=' + UserStore.user.token
       }
     })
   }
@@ -63,10 +61,13 @@ class Header extends Component {
   render() {
     return (
       <div>
-        <h5 id='signed-in-as'>Signed in as: {this.user.username}</h5>
+        <h5 id='signed-in-as'>Signed in as: {UserStore.user.username}</h5>
         <ul className="nav justify-content-end">
+        <li className="nav-item">
+          <Link className="nav-link" to="/my-lists">My Lists</Link>
+        </li>
           <li className="nav-item">
-            <Link className="nav-link active" to="/">To Do List</Link>
+            <Link className="nav-link" to="/">New List</Link>
           </li>
           <li className="nav-item">
             <Link className="nav-link sign-link" to="/sign-in">Sign-In</Link>
