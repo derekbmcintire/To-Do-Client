@@ -21,6 +21,7 @@ class UserStore extends EventEmitter {
         username: data.user.username,
         token: data.user.token
       }
+      console.log(this.user)
       this.emit('change')
     }
 

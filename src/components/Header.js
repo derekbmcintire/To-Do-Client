@@ -44,7 +44,7 @@ class Header extends Component {
 
   signOut() {
     return $.ajax({
-      url: 'http://localhost:4741/sign-out/' + UserStore.user.id,
+      url: 'https://boiling-chamber-26539.herokuapp.com/sign-out/' + UserStore.user.id,
       method: 'DELETE',
       headers: {
         Authorization: 'Token token=' + UserStore.user.token
@@ -69,16 +69,16 @@ class Header extends Component {
         <div class="col-xs-8">
           <ul className="nav justify-content-end">
           <li className="nav-item">
-            <Link className="nav-link my-lists" to="/my-lists">My Lists</Link>
+            <Link className="nav-link my-lists" to="/todo-front/my-lists">My Lists</Link>
           </li>
             <li className="nav-item">
-              <Link className="nav-link" to="/">New List</Link>
+              <Link className="nav-link" to="/todo-front/">New List</Link>
             </li>
             <li className="nav-item">
-              <Link className="nav-link sign-link" to="/sign-in">Sign-In</Link>
+              <Link className="nav-link sign-link" to="/todo-front/sign-in">Sign-In</Link>
             </li>
             <li className="nav-item">
-              <Link className="nav-link sign-out" to="/sign-in" onClick={this.onSignOut.bind(this)}>Sign Out</Link>
+              <Link className="nav-link sign-out" to="/todo-front/sign-in" onClick={this.onSignOut.bind(this)}>Sign Out</Link>
             </li>
           </ul>
         </div>
