@@ -73,7 +73,7 @@ class Header extends Component {
             <Link className="nav-link my-lists" to="/my-lists">My Lists</Link>
           </li>
             <li className="nav-item">
-              <Link className="nav-link" to="/">New List</Link>
+              <Link className="nav-link" to="/">Current List</Link>
             </li>
             <li className="nav-item">
               <Link className="nav-link sign-link" to="/sign-in">Sign-In</Link>

@@ -17,13 +17,16 @@ class Home extends Component {
     this.state = {
       // sets todos to the getAll function in TodoStore, which returns all
       // current todos
-      todos: TodoStore.getAll()
+      todos: TodoStore.getAll(),
+      update: false
     }
   }
 
   clearList() {
     TodoActions.clearList()
     $('#list-title').val('To Do List')
+    $('#update-list').hide()
+    $('#save-list').show()
   }
 
   // this happens once on page load and not again, so it's the best place to add
@@ -42,11 +45,23 @@ class Home extends Component {
     }
     this.title = TodoStore.title
     $('#list-title').val(String(this.title))
+    console.log(TodoStore.update)
+    this.update = TodoStore.update
+    if (this.update) {
+      $('#update-list').show()
+      $('#save-list').hide()
+    } else {
+      $('#update-list').hide()
+      $('#save-list').show()
+    }
+
   }
 
   // removes event listener to prevent memory leak
   componentWillUnmount() {
     TodoStore.removeListener('change', this.getTodos)
+    $('#update-list').hide()
+    $('#save-list').show()
   }
 
   // gets all current list items
@@ -87,6 +102,10 @@ class Home extends Component {
       .catch(this.saveListFailure)
   }
 
+  onUpdateList() {
+    console.log('update it')
+  }
+
   createToDo(e) {
     e.preventDefault()
     const item = document.getElementById('new-do').value
@@ -118,6 +137,7 @@ class Home extends Component {
           <br />
           <button id='clear-list' className='btn list-btn' onClick={this.clearList.bind(this)}>Clear</button>
           <button id='save-list' className='btn list-btn' onClick={this.onSaveList.bind(this)}>Save</button>
+          <button id='update-list' className='btn list-btn' onClick={this.onUpdateList.bind(this)}>Update</button>
           </ul>
         </div>
       )

@@ -11,6 +11,7 @@ class TodoStore extends EventEmitter {
     super()
     this.todos = []
     this.title = 'To Do List'
+    this.update = false
     }
 
     completeItem(id) {
@@ -51,12 +52,15 @@ class TodoStore extends EventEmitter {
 
     populateList(list) {
       this.todos = list
+      this.update = true
       this.emit('change')
     }
 
     clearList() {
       this.todos = []
       this.title = 'To Do List'
+      this.update = false
+      console.log(this.update)
       this.emit('change')
     }
 
