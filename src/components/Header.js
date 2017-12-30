@@ -39,7 +39,6 @@ class Header extends Component {
   }
 
   signOut() {
-    console.log('passing id ', UserStore.user.id)
     return $.ajax({
       url: 'http://localhost:4741/sign-out/' + UserStore.user.id,
       method: 'DELETE',
@@ -50,7 +49,6 @@ class Header extends Component {
   }
 
   onSignOut(id) {
-    console.log('triggered')
     this.signOut()
       .then(this.signOutSuccess)
       .catch(this.signOutFailure)

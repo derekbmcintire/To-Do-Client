@@ -31,7 +31,6 @@ class Home extends Component {
     // listens for a change event to be emitted and sets state
     TodoStore.on('change', this.getTodos)
     this.user = UserStore.user
-    console.log(this.user)
   }
 
   componentDidMount() {
@@ -66,11 +65,11 @@ class Home extends Component {
   }
 
   saveListSuccess() {
-    console.log('save great success')
+    $('#list-message').text('List Saved!')
   }
 
   saveListFailure() {
-    console.log('save great failure')
+    $('#list-message').text('List not saved')
   }
 
   onSaveList() {
@@ -93,17 +92,14 @@ class Home extends Component {
   }
 
   render() {
-    // sets this object to the current state
-    // ?I am not sure why todos needs to be wrapped in braces
-    // since this.state is already an object
+    // this is using ES6 destructuring to make the variable todos = whatever
+    // this.state.todos is
     const {todos} = this.state
-    console.log('todos ', todos)
       // map through all the current todos and return a new
       // Todo component
       // set the key to the current todo id
       // ?use the ES6 spread operator to pass an object of props
       const TodoComponents = todos.map((todo) => {
-        console.log(todo)
         return <Todo key={todo.id} {...todo} />
       })
       return (
@@ -112,8 +108,9 @@ class Home extends Component {
             <input className='form-control form-control-lg add' id='new-do' />
             <button type='submit' className='btn btn-outline-success add-item add'>Add item</button>
           </form>
-          <input id='list-title' className='list-title form-control form-control-lg' placeholder='To Do List' />
+          <input type='text' id='list-title' className='list-title' placeholder='To Do List' />
           <ul className='todos'>
+          <h4 id='list-message'> </h4>
           {TodoComponents}
           <br />
           <button id='clear-list' className='btn list-btn' onClick={this.clearList.bind(this)}>Clear</button>

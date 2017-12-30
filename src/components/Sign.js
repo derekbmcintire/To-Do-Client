@@ -8,27 +8,9 @@ class Sign extends Component {
   // sets initial state of Home
   constructor() {
     super()
-    this.getUser = this.getUser.bind(this)
     this.state = {
       user: UserStore.getAll()
     }
-  }
-
-  // this happens once on page load and not again, so it's the best place to add
-  // event listeners
-  componentWillMount() {
-    // listens for a change event to be emitted and sets state
-    console.log('willMount')
-    UserStore.on('change', this.getUser)
-  }
-
-  // removes event listener to prevent memory leak
-  componentWillUnmount() {
-    UserStore.removeListener('change', this.getUser)
-  }
-
-  getUser() {
-    console.log('change')
   }
 
   signIn(data) {
@@ -76,7 +58,6 @@ class Sign extends Component {
   }
 
   signUpSuccess() {
-    console.log('success!')
     $('.form-control').val('')
     $('.up-check').text(" \u2714")
   }

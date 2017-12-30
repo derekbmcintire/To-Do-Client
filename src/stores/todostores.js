@@ -47,6 +47,11 @@ class TodoStore extends EventEmitter {
       this.emit('change')
     }
 
+    populateList(list) {
+      this.todos = list
+      this.emit('change')
+    }
+
     clearList() {
       this.todos = []
       this.emit('change')
@@ -75,6 +80,9 @@ class TodoStore extends EventEmitter {
     }
     if (action.type === 'CLEAR_LIST') {
       this.clearList()
+    }
+    if (action.type === 'POPULATE_LIST') {
+      this.populateList(action.data)
     }
     }
 }

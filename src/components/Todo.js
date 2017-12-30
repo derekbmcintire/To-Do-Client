@@ -15,19 +15,18 @@ class Todo extends Component {
   }
 
   render() {
-    const { complete, edit, text } = this.props
-
-    const icon = complete ? "\u2714" : "\u2610"
-
+    const { complete, text } = this.props
+    const icon = String(complete) === 'true' ? "\u2714" : "\u2610"
     const deleteIcon = "\u2716"
 
-    if (edit) {
-      return (
-        <li>
-          <input value={text} focus="focused"/>
-        </li>
-      )
-    }
+    //
+    // if (edit) {
+    //   return (
+    //     <li>
+    //       <input value={text} focus="focused"/>
+    //     </li>
+    //   )
+    // }
 
     return (
       <li className='item row' >
@@ -35,7 +34,7 @@ class Todo extends Component {
         <h3 className='list-item' onClick={this.completeItem.bind(this)}><span className={String(this.props.complete)}>{icon}</span> {text} </h3>
         </div>
         <div className='col-xs-1'>
-        <button className='delete' onClick={this.deleteItem.bind(this)}>{deleteIcon}</button>
+          <button className='delete' onClick={this.deleteItem.bind(this)}>{deleteIcon}</button>
         </div>
       </li>
     )

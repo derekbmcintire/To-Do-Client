@@ -6,3 +6,10 @@ export function getLists(data) {
     data
   })
 }
+
+export function showThisList(data) {
+  dispatcher.dispatch({
+    type: 'POPULATE_LIST',
+    data
+  })
+}

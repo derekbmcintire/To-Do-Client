@@ -27,8 +27,6 @@ class Home extends Component {
   }
 
   getUserLists() {
-    console.log('detected change')
-
       this.setState({
         lists: ListStore.getAll()
       })
@@ -59,14 +57,15 @@ class Home extends Component {
     })
   }
 
+
+
   render() {
     const {myLists} = this.state
     const ListComponents = myLists.map((list) => {
-      console.log('in render ', list)
-      return <List key={list.id} {...list} />
+      return <List key={list.id} list={list} {...list} />
     })
     return(
-      <div>
+      <div className='lists-div'>
       <h2>My Lists</h2>
       <ul>{ ListComponents }</ul>
       </div>

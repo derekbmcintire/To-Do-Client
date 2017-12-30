@@ -11,13 +11,11 @@ class ListStore extends EventEmitter {
 
     getLists(data) {
       this.lists = data
-      console.log('changed data', this.lists)
       this.emit('change')
     }
 
     getAll() {
       return this.lists
-      console.log('getAll called')
     }
 
     handleActions(action) {

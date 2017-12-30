@@ -5,7 +5,6 @@ export function signIn(data) {
     type: 'SIGN_IN',
     data
   })
-  console.log('data in useractions', data)
 }
 
 export function signOut() {
