@@ -23,6 +23,7 @@ class Sign extends Component {
 
   signInSuccess(data) {
     $('.sign-out').show()
+    $('.my-lists').show()
     $('#signed-in-as').show()
     $('.sign-link').hide()
     UserActions.signIn(data)

@@ -39,6 +39,9 @@ class Home extends Component {
     } else {
       $('#welcome').show()
     }
+    this.title = TodoStore.title
+    console.log('tha title ', this.title)
+    $('#list-title').val(String(this.title))
   }
 
   // removes event listener to prevent memory leak
@@ -108,7 +111,7 @@ class Home extends Component {
             <input className='form-control form-control-lg add' id='new-do' />
             <button type='submit' className='btn btn-outline-success add-item add'>Add item</button>
           </form>
-          <input type='text' id='list-title' className='list-title' placeholder='To Do List' />
+          <input type='text' id='list-title' className='list-title form-control form-control-lg' placeholder='To Do List' />
           <ul className='todos'>
           <h4 id='list-message'> </h4>
           {TodoComponents}

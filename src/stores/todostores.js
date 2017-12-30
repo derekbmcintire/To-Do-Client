@@ -2,6 +2,7 @@
 // installing anything!
 import { EventEmitter } from 'events'
 import dispatcher from '../dispatcher'
+const $ = require('jquery')
 
 // this is storing data for the todo list
 class TodoStore extends EventEmitter {
@@ -9,6 +10,7 @@ class TodoStore extends EventEmitter {
   constructor() {
     super()
     this.todos = []
+    this.title = 'To Do List'
     }
 
     completeItem(id) {
@@ -83,6 +85,7 @@ class TodoStore extends EventEmitter {
     }
     if (action.type === 'POPULATE_LIST') {
       this.populateList(action.data)
+      this.title = action.title
     }
     }
 }

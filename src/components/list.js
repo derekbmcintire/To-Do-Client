@@ -7,15 +7,12 @@ class List extends Component {
   constructor(props) {
     super()
   }
-  changeTitle() {
-    $('#list-title').val('hi')
-  }
 
   render() {
     const { title, items } = this.props
     return (
       <Link to="/"><li className='item row' onClick={() => {
-        ListActions.showThisList(this.props.list.items)
+        ListActions.showThisList(this.props.list.items, this.props.list.title)
       }}>
         <div className='col-xs-8'>
           <h4 className='list'>{title}</h4>

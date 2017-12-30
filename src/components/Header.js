@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import {Link} from 'react-router-dom'
 import UserStore from '../stores/userstores'
 import * as UserActions from '../Actions/UserActions'
+import TodoStore from '../stores/todostores'
 const $ = require('jquery')
 
 class Header extends Component {
@@ -25,12 +26,15 @@ class Header extends Component {
   componentDidMount() {
     $('#signed-in-as').hide()
     $('.sign-out').hide()
+    $('.my-lists').hide()
   }
 
   signOutSuccess() {
-    $('.sign-out').show()
-    $('.sign-link').hide()
+    $('.sign-out').hide()
+    $('.sign-link').show()
+    $('.my-lists').hide()
     UserActions.signOut()
+    TodoStore.title = 'To Do List'
     console.log('signed out')
   }
 
@@ -58,22 +62,26 @@ class Header extends Component {
 
   render() {
     return (
-      <div>
-        <h5 id='signed-in-as'>Signed in as: {UserStore.user.username}</h5>
-        <ul className="nav justify-content-end">
-        <li className="nav-item">
-          <Link className="nav-link" to="/my-lists">My Lists</Link>
-        </li>
+      <div class="row">
+        <div class="col-xs-4">
+          <h5 id='signed-in-as'>Signed in as: {UserStore.user.username}</h5>
+        </div>
+        <div class="col-xs-8">
+          <ul className="nav justify-content-end">
           <li className="nav-item">
-            <Link className="nav-link" to="/">New List</Link>
+            <Link className="nav-link my-lists" to="/my-lists">My Lists</Link>
           </li>
-          <li className="nav-item">
-            <Link className="nav-link sign-link" to="/sign-in">Sign-In</Link>
-          </li>
-          <li className="nav-item">
-            <Link className="nav-link sign-out" to="/sign-in" onClick={this.onSignOut.bind(this)}>Sign Out</Link>
-          </li>
-        </ul>
+            <li className="nav-item">
+              <Link className="nav-link" to="/">New List</Link>
+            </li>
+            <li className="nav-item">
+              <Link className="nav-link sign-link" to="/sign-in">Sign-In</Link>
+            </li>
+            <li className="nav-item">
+              <Link className="nav-link sign-out" to="/sign-in" onClick={this.onSignOut.bind(this)}>Sign Out</Link>
+            </li>
+          </ul>
+        </div>
       </div>
     )
   }

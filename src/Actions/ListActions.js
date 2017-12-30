@@ -7,9 +7,10 @@ export function getLists(data) {
   })
 }
 
-export function showThisList(data) {
+export function showThisList(data, title) {
   dispatcher.dispatch({
     type: 'POPULATE_LIST',
+    title,
     data
   })
 }
