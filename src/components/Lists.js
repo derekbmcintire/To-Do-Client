@@ -49,7 +49,7 @@ class Home extends Component {
 
   getLists() {
     return $.ajax({
-      url: 'http://localhost:4741/lists',
+      url: 'https://boiling-chamber-26539.herokuapp.com/lists',
       method: 'GET',
       headers: {
         Authorization: 'Token token=' + UserStore.user.token

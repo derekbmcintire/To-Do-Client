@@ -44,7 +44,7 @@ class Header extends Component {
 
   signOut() {
     return $.ajax({
-      url: 'http://localhost:4741/sign-out/' + UserStore.user.id,
+      url: 'https://boiling-chamber-26539.herokuapp.com/sign-out/' + UserStore.user.id,
       method: 'DELETE',
       headers: {
         Authorization: 'Token token=' + UserStore.user.token
