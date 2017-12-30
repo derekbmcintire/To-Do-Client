@@ -48,24 +48,24 @@ h2 {
   background-color: transparent;
   border: none;
   box-shadow: none;
-  color: red;
+  color: #C67171;
   float: right;
   font-size: 16px;
   padding: 4px;
 }
 
 .delete:hover {
-  background-color: red;
+  background-color: #C67171;
   border-radius: 3px;
   color: white;
 }
 
 .true {
-  color: green;
+  color: #71C671;
 }
 
 .false {
-  color: red;
+  color: #C67171;
 }
 
 .item {
@@ -90,7 +90,7 @@ h2 {
 }
 
 .list-btn:hover {
-  background-color: #FFFACD;
+  background-color: #71C671;
 }
 
 .list-item {
@@ -153,6 +153,22 @@ h2 {
   border-radius: 4px;
   min-height: 500px;
   padding: 10px;
+}
+
+.up {
+  background-color: transparent;
+  border: none;
+  box-shadow: none;
+  color: green;
+  /* float: right; */
+  font-size: 16px;
+  padding: 4px;
+}
+
+.up:hover {
+  background-color: #C67171;
+  border-radius: 3px;
+  color: white;
 }
 
 .up-check {

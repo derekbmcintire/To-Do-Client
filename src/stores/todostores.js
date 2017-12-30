@@ -64,6 +64,14 @@ class TodoStore extends EventEmitter {
       this.emit('change')
     }
 
+    moveUp(item, index) {
+      const array = this.todos
+      const newIndex = (index === 0) ? array.length : (index - 1)
+      array.splice(index, 1)
+      array.splice(newIndex, 0, item)
+      this.emit('change')
+    }
+
     // returns all todos
     getAll() {
       return this.todos
@@ -92,6 +100,9 @@ class TodoStore extends EventEmitter {
       this.populateList(action.data)
       this.title = action.title
       this.id = action.id
+    }
+    if (action.type === 'MOVE_UP') {
+      this.moveUp(action.item, action.index)
     }
     }
 }

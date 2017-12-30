@@ -87,7 +87,7 @@ class Home extends Component {
   }
 
   saveListFailure() {
-    $('#list-message').text('List not saved')
+    $('#list-message').text('List Not Saved')
   }
 
   onSaveList() {
@@ -115,11 +115,11 @@ class Home extends Component {
   }
 
   updateListSuccess() {
-    console.log('update success')
+    $('#list-message').text('List Updated')
   }
 
   updateListFailure() {
-    console.log('update failure')
+    $('#list-message').text('List Not Updated')
   }
 
   onUpdateList() {

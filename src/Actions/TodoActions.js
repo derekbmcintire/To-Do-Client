@@ -26,3 +26,11 @@ export function clearList() {
     type: 'CLEAR_LIST'
   })
 }
+
+export function moveUp(item, index) {
+  dispatcher.dispatch({
+    type: 'MOVE_UP',
+    item,
+    index
+  })
+}
