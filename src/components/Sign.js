@@ -15,7 +15,7 @@ class Sign extends Component {
 
   signIn(data) {
     return $.ajax({
-    url: 'https://boiling-chamber-26539.herokuapp.com/sign-in',
+    url: 'http://localhost:4741/sign-in',
     method: 'POST',
     data
   })
@@ -52,7 +52,7 @@ class Sign extends Component {
 
   signUp(data) {
     return $.ajax({
-      url: 'https://boiling-chamber-26539.herokuapp.com/sign-up',
+      url: 'http://localhost:4741/sign-up',
       method: 'POST',
       data
     })
