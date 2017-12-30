@@ -19,7 +19,7 @@ class App extends React.Component {
           <hr/>
           <Route exact path="/todo-front/" component={Home} />
           <Route path="/todo-front/sign-in" component={Sign} />
-          <Route path="todo-front/my-lists" component={Lists} />
+          <Route path="/todo-front/my-lists" component={Lists} />
         </div>
       </Router>
     )
