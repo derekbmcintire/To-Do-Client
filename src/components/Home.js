@@ -23,6 +23,7 @@ class Home extends Component {
 
   clearList() {
     TodoActions.clearList()
+    $('#list-title').val('To Do List')
   }
 
   // this happens once on page load and not again, so it's the best place to add
@@ -40,7 +41,6 @@ class Home extends Component {
       $('#welcome').show()
     }
     this.title = TodoStore.title
-    console.log('tha title ', this.title)
     $('#list-title').val(String(this.title))
   }
 

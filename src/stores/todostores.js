@@ -56,6 +56,7 @@ class TodoStore extends EventEmitter {
 
     clearList() {
       this.todos = []
+      this.title = 'To Do List'
       this.emit('change')
     }
 

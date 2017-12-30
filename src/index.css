@@ -70,7 +70,7 @@ h2 {
 
 .item {
   border-bottom: 1px solid black;
-  border-radius: 3px;
+  /* border-bottom-left-radius: 5px; */
   cursor: pointer;
   margin: 5px auto;
   max-width: 600px;

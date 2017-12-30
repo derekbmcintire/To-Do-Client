@@ -33,6 +33,7 @@ class Header extends Component {
     $('.sign-out').hide()
     $('.sign-link').show()
     $('.my-lists').hide()
+    $('#signed-in-as').hide()
     UserActions.signOut()
     TodoStore.title = 'To Do List'
     console.log('signed out')
@@ -62,11 +63,11 @@ class Header extends Component {
 
   render() {
     return (
-      <div class="row">
-        <div class="col-xs-4">
+      <div className="row">
+        <div className="col-xs-4">
           <h5 id='signed-in-as'>Signed in as: {UserStore.user.username}</h5>
         </div>
-        <div class="col-xs-8">
+        <div className="col-xs-8">
           <ul className="nav justify-content-end">
           <li className="nav-item">
             <Link className="nav-link my-lists" to="/my-lists">My Lists</Link>
