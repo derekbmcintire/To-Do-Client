@@ -44,7 +44,7 @@ class Sign extends Component {
       this.signIn(currentVals)
         .then(this.signInSuccess)
         .then(() => {
-          this.props.history.push('/')
+          this.props.history.push('/todo-push/')
         })
         .catch(this.signInFailure)
 
