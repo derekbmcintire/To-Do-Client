@@ -58,7 +58,7 @@ class Home extends Component {
 
   saveList(data) {
       return $.ajax({
-        url: 'hhttps://boiling-chamber-26539.herokuapp.com/lists',
+        url: 'http://localhost:4741/lists',
         method: 'POST',
         headers: {
           Authorization: 'Token token=' + this.user.token

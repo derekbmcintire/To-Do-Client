@@ -49,7 +49,7 @@ class Home extends Component {
 
   getLists() {
     return $.ajax({
-      url: 'https://boiling-chamber-26539.herokuapp.com/lists',
+      url: 'http://localhost:4741/lists',
       method: 'GET',
       headers: {
         Authorization: 'Token token=' + UserStore.user.token
@@ -62,7 +62,7 @@ class Home extends Component {
   render() {
     const {myLists} = this.state
     const ListComponents = myLists.map((list) => {
-      return <List key={list.id} list={list} {...list} />
+      return <List key={list.id} list={list}{...list} />
     })
     return(
       <div className='lists-div'>
