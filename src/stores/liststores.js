@@ -22,6 +22,9 @@ class ListStore extends EventEmitter {
     if (action.type === 'GET_LISTS') {
       this.getLists(action.data)
     }
+    if (action.type === 'DELETE_LIST') {
+      this.getLists()
+    }
     }
 }
 

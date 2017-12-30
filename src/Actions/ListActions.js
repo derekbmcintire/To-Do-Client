@@ -14,3 +14,9 @@ export function showThisList(data, title) {
     data
   })
 }
+
+export function deleteList() {
+  dispatcher.dispatch({
+    type: 'DELTE_LIST'
+  })
+}

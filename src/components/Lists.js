@@ -16,17 +16,22 @@ class Home extends Component {
   }
 
   componentWillMount() {
-    this.getLists()
-      .then(this.getListsSuccess)
-      .catch(this.getListsFailure)
-      ListStore.on('change', this.getUserLists)
+    this.onGetLists()
+    ListStore.on('change', this.getUserLists)
   }
 
   componentWillUnmount() {
     ListStore.removeListener('change', this.getUserLists)
   }
 
+  onGetLists() {
+    this.getLists()
+      .then(this.getListsSuccess)
+      .catch(this.getListsFailure)
+  }
+
   getUserLists() {
+    this.onGetLists()
       this.setState({
         lists: ListStore.getAll()
       })
