@@ -91,6 +91,7 @@ class TodoStore extends EventEmitter {
     if (action.type === 'POPULATE_LIST') {
       this.populateList(action.data)
       this.title = action.title
+      this.id = action.id
     }
     }
 }

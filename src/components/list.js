@@ -36,8 +36,9 @@ deleteSuccess() {
     <li className='item row'>
       <Link to="/">
         <div className='col-xs-8'>
-          <h4 className='list' onClick={() => {
-            ListActions.showThisList(this.props.list.items, this.props.list.title)
+          <h4 className='list' key={this.props.id} onClick={() => {
+            console.log(this.props.id)
+            ListActions.showThisList(this.props.list.items, this.props.list.title, this.props.id)
           }}>{title}</h4>
         </div>
         <div className='col-xs-2'>

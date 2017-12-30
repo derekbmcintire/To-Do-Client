@@ -102,8 +102,37 @@ class Home extends Component {
       .catch(this.saveListFailure)
   }
 
+  updateList(data) {
+    console.log('in updatelist ', this.props.key)
+      return $.ajax({
+        url: 'http://localhost:4741/lists/' + TodoStore.id,
+        method: 'PATCH',
+        headers: {
+          Authorization: 'Token token=' + this.user.token
+        },
+        data
+      })
+  }
+
+  updateListSuccess() {
+    console.log('update success')
+  }
+
+  updateListFailure() {
+    console.log('update failure')
+  }
+
   onUpdateList() {
-    console.log('update it')
+    const data = {
+      list: {
+        title: document.getElementById('list-title').value,
+        items: this.state.todos
+      }
+    }
+    console.log('in onUpdateList ', TodoStore.id)
+    this.updateList(data)
+      .then(this.updateListSuccess)
+      .catch(this.updateListFailure)
   }
 
   createToDo(e) {
