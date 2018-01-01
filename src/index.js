@@ -19,9 +19,9 @@ class App extends React.Component {
           <Header />
           <Banner />
           <hr/>
-          <Route exact path="/todo-front/" component={Home} />
-          <Route path="/todo-front/sign-in" component={Sign} />
-          <Route path="/todo-front/my-lists" component={Lists} />
+          <Route exact path="/" component={Home} />
+          <Route path="/sign-in" component={Sign} />
+          <Route path="/my-lists" component={Lists} />
         </div>
       </Router>
     )

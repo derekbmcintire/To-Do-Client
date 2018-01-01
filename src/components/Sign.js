@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import * as UserActions from '../Actions/UserActions'
 import UserStore from '../stores/userstores'
 const $ = require('jquery')
+const config = require('../config')
 
 
 class Sign extends Component {
@@ -15,7 +16,7 @@ class Sign extends Component {
 
   signIn(data) {
     return $.ajax({
-    url: 'https://dbm-todo-api.herokuapp.com/sign-in',
+    url: config.development + '/sign-in',
     method: 'POST',
     data
   })
@@ -44,7 +45,7 @@ class Sign extends Component {
       this.signIn(currentVals)
         .then(this.signInSuccess)
         .then(() => {
-          this.props.history.push('/todo-front/')
+          this.props.history.push('/')
         })
         .catch(this.signInFailure)
 
@@ -52,7 +53,7 @@ class Sign extends Component {
 
   signUp(data) {
     return $.ajax({
-      url: 'https://dbm-todo-api.herokuapp.com/sign-up',
+      url: config.development + '/sign-up',
       method: 'POST',
       data
     })

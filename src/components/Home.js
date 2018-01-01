@@ -6,6 +6,7 @@ import TodoStore from '../stores/todostores'
 import UserStore from '../stores/userstores'
 import '../../node_modules/bootstrap/dist/css/bootstrap.min.css'
 const $ = require('jquery')
+const config = require('../config')
 
 class Home extends Component {
   // sets initial state of Home
@@ -73,7 +74,7 @@ class Home extends Component {
 
   saveList(data) {
       return $.ajax({
-        url: 'https://dbm-todo-api.herokuapp.com/lists',
+        url: config.development + '/lists',
         method: 'POST',
         headers: {
           Authorization: 'Token token=' + this.user.token

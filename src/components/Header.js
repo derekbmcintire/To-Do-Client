@@ -4,7 +4,9 @@ import UserStore from '../stores/userstores'
 import * as UserActions from '../Actions/UserActions'
 import TodoStore from '../stores/todostores'
 const $ = require('jquery')
+const config = require('../config')
 
+// Header element holds the nav
 class Header extends Component {
   constructor() {
     super()
@@ -17,10 +19,6 @@ class Header extends Component {
     this.setState({
       user: UserStore.getAll()
     })
-    // this.user = UserStore.user
-    // UserStore.on('change', () => {
-    //   this.user = UserStore.user
-    // })
   }
 
   componentDidMount() {
@@ -45,7 +43,7 @@ class Header extends Component {
 
   signOut() {
     return $.ajax({
-      url: 'https://dbm-todo-api.herokuapp.com/sign-out/' + UserStore.user.id,
+      url: config.development + '/sign-out/' + UserStore.user.id,
       method: 'DELETE',
       headers: {
         Authorization: 'Token token=' + UserStore.user.token
@@ -70,16 +68,16 @@ class Header extends Component {
         <div className="col-xs-8">
           <ul className="nav justify-content-end">
           <li className="nav-item">
-            <Link className="nav-link my-lists" to="/todo-front/my-lists">My Lists</Link>
+            <Link className="nav-link my-lists" to="/my-lists">My Lists</Link>
           </li>
             <li className="nav-item">
-              <Link className="nav-link" to="/todo-front">Current List</Link>
+              <Link className="nav-link" to="/">Current List</Link>
             </li>
             <li className="nav-item">
-              <Link className="nav-link sign-link" to="/todo-front/sign-in">Sign-In</Link>
+              <Link className="nav-link sign-link" to="/sign-in">Sign-In</Link>
             </li>
             <li className="nav-item">
-              <Link className="nav-link sign-out" to="/todo-front/sign-in" onClick={this.onSignOut.bind(this)}>Sign Out</Link>
+              <Link className="nav-link sign-out" to="/sign-in" onClick={this.onSignOut.bind(this)}>Sign Out</Link>
             </li>
           </ul>
         </div>

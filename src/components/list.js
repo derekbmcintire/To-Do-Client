@@ -2,8 +2,8 @@ import React, { Component } from 'react'
 import * as ListActions from '../Actions/ListActions'
 import {Link} from 'react-router-dom'
 import UserStore from '../stores/userstores'
-
 const $ = require('jquery')
+const config = require('../config')
 
 class List extends Component {
   constructor(props) {
@@ -18,7 +18,7 @@ class List extends Component {
 
   deleteList() {
     return $.ajax({
-      url: 'https://dbm-todo-api.herokuapp.com/lists/' + this.props.id,
+      url: config.development + '/lists/' + this.props.id,
       method: 'DELETE',
       headers: {
         Authorization: 'Token token=' + UserStore.user.token
@@ -27,7 +27,7 @@ class List extends Component {
   }
 
 deleteSuccess() {
-  
+
   console.log('success')
 }
 
@@ -39,7 +39,7 @@ deleteSuccess() {
       console.log(this.props.id)
       ListActions.showThisList(this.props.list.items, this.props.list.title, this.props.id)
     } }>
-      <Link to="/todo-front/">
+      <Link to="/">
         <div className='col-xs-8'>
           <h4 className='list' key={this.props.id}>{title}</h4>
         </div>

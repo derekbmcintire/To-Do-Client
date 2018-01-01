@@ -4,6 +4,7 @@
   "private": true,
   "homepage": "https://derekbmcintire.github.io/todo-front",
   "main": "index.js",
+  "proxy": "http://localhost:4741",
   "devDependencies": {
     "gh-pages": "^1.0.0"
   },
