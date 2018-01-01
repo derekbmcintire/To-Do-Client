@@ -6,8 +6,8 @@ import List from './list'
 const $ = require('jquery')
 const config = require('../config')
 
-// Home component
-class Home extends Component {
+// Lists component
+class Lists extends Component {
   // sets initial state
   constructor() {
     super()
@@ -99,4 +99,4 @@ class Home extends Component {
   }
 }
 
-export default Home
+export default Lists

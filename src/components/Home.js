@@ -8,6 +8,7 @@ import '../../node_modules/bootstrap/dist/css/bootstrap.min.css'
 const $ = require('jquery')
 const config = require('../config')
 
+// Home component is the main view
 class Home extends Component {
   // sets initial state of Home
   constructor() {
@@ -23,6 +24,10 @@ class Home extends Component {
     }
   }
 
+  // clearList callback function
+  // calls TodoActions.clearList to reset todostores state
+  // resets list title
+  // hides update button and shows save button
   clearList() {
     TodoActions.clearList()
     $('#list-title').val('To Do List')
@@ -38,16 +43,23 @@ class Home extends Component {
     this.user = UserStore.user
   }
 
+  // after component renders
   componentDidMount() {
+    // check if user is signed in if there is a user, display the
+    // username in the nav
     if (this.user.username === null) {
       $('#welcome').hide()
     } else {
       $('#welcome').show()
     }
+    // set current title to todostore state title
     this.title = TodoStore.title
+    // convert state object to string
     $('#list-title').val(String(this.title))
-    console.log(TodoStore.update)
+    // set update status (true or false based on whether or not the current
+    // list has previously been saved)
     this.update = TodoStore.update
+    // if update is true show update button, else show save button
     if (this.update) {
       $('#update-list').show()
       $('#save-list').hide()
@@ -59,6 +71,7 @@ class Home extends Component {
   }
 
   // removes event listener to prevent memory leak
+  // default to show save button
   componentWillUnmount() {
     TodoStore.removeListener('change', this.getTodos)
     $('#update-list').hide()
@@ -72,6 +85,7 @@ class Home extends Component {
       })
   }
 
+  // save current list ajax request
   saveList(data) {
       return $.ajax({
         url: config.development + '/lists',
@@ -83,30 +97,36 @@ class Home extends Component {
       })
   }
 
+  // on save success, display message
   saveListSuccess() {
     $('#list-message').text('List Saved!')
   }
 
+  // on save failure, display message
   saveListFailure() {
     $('#list-message').text('List Not Saved')
   }
 
+  // save list event handler
   onSaveList() {
+    // build data object to send to API
     const data = {
       list: {
         title: document.getElementById('list-title').value,
         items: this.state.todos
       }
     }
+    // call the ajax request and pass above object
     this.saveList(data)
       .then(this.saveListSuccess)
       .catch(this.saveListFailure)
   }
 
+  // update a list ajax request
   updateList(data) {
     console.log('in updatelist ', this.props.key)
       return $.ajax({
-        url: 'https://dbm-todo-api.herokuapp.com/lists/' + TodoStore.id,
+        url: config.development + '/lists/' + TodoStore.id,
         method: 'PATCH',
         headers: {
           Authorization: 'Token token=' + this.user.token
@@ -115,38 +135,49 @@ class Home extends Component {
       })
   }
 
+  // display message on update success
   updateListSuccess() {
     $('#list-message').text('List Updated')
   }
 
+  // display message on update failure
   updateListFailure() {
     $('#list-message').text('List Not Updated')
   }
 
+  // update list event handler
   onUpdateList() {
+    // build data object to send to API
     const data = {
       list: {
         title: document.getElementById('list-title').value,
         items: this.state.todos
       }
     }
-    console.log('in onUpdateList ', TodoStore.id)
+    // call ajax request and pass above object
     this.updateList(data)
       .then(this.updateListSuccess)
       .catch(this.updateListFailure)
   }
 
+  // add an item to a list
   createToDo(e) {
     e.preventDefault()
+    // check the input for a value, if nothing has been entered
+    // display a message and do not add the item
     if (!document.getElementById('new-do').value) {
       $('#list-message').text('Please enter a list item')
     } else {
+      // take the value from the input field and pass it
+      // to the TodoActions.createToDo function
       const item = document.getElementById('new-do').value
       TodoActions.createToDo(item)
+      // clear the input field
       document.getElementById('new-do').value = ''
     }
   }
 
+  // component render function
   render() {
     // this is using ES6 destructuring to make the variable todos = whatever
     // this.state.todos is
