@@ -73,7 +73,7 @@ class Home extends Component {
 
   saveList(data) {
       return $.ajax({
-        url: 'http://localhost:4741/lists',
+        url: 'https://dbm-todo-api.herokuapp.com/lists',
         method: 'POST',
         headers: {
           Authorization: 'Token token=' + this.user.token
@@ -105,7 +105,7 @@ class Home extends Component {
   updateList(data) {
     console.log('in updatelist ', this.props.key)
       return $.ajax({
-        url: 'http://localhost:4741/lists/' + TodoStore.id,
+        url: 'https://dbm-todo-api.herokuapp.com/lists/' + TodoStore.id,
         method: 'PATCH',
         headers: {
           Authorization: 'Token token=' + this.user.token

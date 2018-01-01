@@ -15,7 +15,7 @@ class Sign extends Component {
 
   signIn(data) {
     return $.ajax({
-    url: 'http://localhost:4741/sign-in',
+    url: 'https://dbm-todo-api.herokuapp.com/sign-in',
     method: 'POST',
     data
   })
@@ -52,7 +52,7 @@ class Sign extends Component {
 
   signUp(data) {
     return $.ajax({
-      url: 'http://localhost:4741/sign-up',
+      url: 'https://dbm-todo-api.herokuapp.com/sign-up',
       method: 'POST',
       data
     })

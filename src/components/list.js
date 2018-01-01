@@ -17,7 +17,7 @@ class List extends Component {
 
   deleteList() {
     return $.ajax({
-      url: 'http://localhost:4741/lists/' + this.props.id,
+      url: 'https://dbm-todo-api.herokuapp.com/lists/' + this.props.id,
       method: 'DELETE',
       headers: {
         Authorization: 'Token token=' + UserStore.user.token
