@@ -37,7 +37,7 @@ deleteSuccess() {
       console.log(this.props.id)
       ListActions.showThisList(this.props.list.items, this.props.list.title, this.props.id)
     } }>
-      <Link to="todo-front/">
+      <Link to="/todo-front/">
         <div className='col-xs-8'>
           <h4 className='list' key={this.props.id}>{title}</h4>
         </div>
