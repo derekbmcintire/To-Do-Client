@@ -1,9 +1,11 @@
 import React, { Component } from 'react'
 import * as TodoActions from '../Actions/TodoActions'
+import TodoStore from '../stores/todostores'
 
 class Todo extends Component {
   constructor(props) {
     super()
+    this.arr = [1, 2, 3, 4, 5]
   }
 
   completeItem() {
@@ -12,6 +14,22 @@ class Todo extends Component {
 
   deleteItem() {
     TodoActions.deleteItem(this.props.id)
+  }
+
+  moveUp(item, index) {
+    TodoActions.moveUp(item, index)
+  }
+
+  onMoveUp() {
+    let item
+    let index
+    for (let i = 0; i < TodoStore.todos.length; i++) {
+      if (TodoStore.todos[i].id === this.props.id) {
+        item = TodoStore.todos[i]
+        index = i
+      }
+    }
+    this.moveUp(item, index)
   }
 
   render() {
@@ -30,8 +48,11 @@ class Todo extends Component {
 
     return (
       <li className='item row' >
-      <div className='col-xs-11'>
-        <h3 className='list-item' onClick={this.completeItem.bind(this)}><span className={String(this.props.complete)}>{icon}</span> {text} </h3>
+      <div className='col-xs-10'>
+        <h4 className='list-item' onClick={this.completeItem.bind(this)}><span className={String(this.props.complete)}>{icon}</span> {text} </h4>
+        </div>
+        <div className='col-xs-1'>
+          <button className='up' onClick={this.onMoveUp.bind(this)}>^</button>
         </div>
         <div className='col-xs-1'>
           <button className='delete' onClick={this.deleteItem.bind(this)}>{deleteIcon}</button>

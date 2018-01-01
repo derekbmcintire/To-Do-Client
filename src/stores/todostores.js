@@ -11,6 +11,7 @@ class TodoStore extends EventEmitter {
     super()
     this.todos = []
     this.title = 'To Do List'
+    this.update = false
     }
 
     completeItem(id) {
@@ -51,11 +52,23 @@ class TodoStore extends EventEmitter {
 
     populateList(list) {
       this.todos = list
+      this.update = true
       this.emit('change')
     }
 
     clearList() {
       this.todos = []
+      this.title = 'To Do List'
+      this.update = false
+      console.log(this.update)
+      this.emit('change')
+    }
+
+    moveUp(item, index) {
+      const array = this.todos
+      const newIndex = (index === 0) ? array.length : (index - 1)
+      array.splice(index, 1)
+      array.splice(newIndex, 0, item)
       this.emit('change')
     }
 
@@ -86,6 +99,10 @@ class TodoStore extends EventEmitter {
     if (action.type === 'POPULATE_LIST') {
       this.populateList(action.data)
       this.title = action.title
+      this.id = action.id
+    }
+    if (action.type === 'MOVE_UP') {
+      this.moveUp(action.item, action.index)
     }
     }
 }

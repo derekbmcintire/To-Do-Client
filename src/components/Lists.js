@@ -16,14 +16,21 @@ class Home extends Component {
   }
 
   componentWillMount() {
-    this.getLists()
-      .then(this.getListsSuccess)
-      .catch(this.getListsFailure)
-      ListStore.on('change', this.getUserLists)
+    ListStore.on('change', this.getUserLists)
+  }
+
+  componentDidMount() {
+    this.onGetLists()
   }
 
   componentWillUnmount() {
     ListStore.removeListener('change', this.getUserLists)
+  }
+
+  onGetLists() {
+    this.getLists()
+      .then(this.getListsSuccess)
+      .catch(this.getListsFailure)
   }
 
   getUserLists() {

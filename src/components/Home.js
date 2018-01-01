@@ -17,12 +17,16 @@ class Home extends Component {
     this.state = {
       // sets todos to the getAll function in TodoStore, which returns all
       // current todos
-      todos: TodoStore.getAll()
+      todos: TodoStore.getAll(),
+      update: false
     }
   }
 
   clearList() {
     TodoActions.clearList()
+    $('#list-title').val('To Do List')
+    $('#update-list').hide()
+    $('#save-list').show()
   }
 
   // this happens once on page load and not again, so it's the best place to add
@@ -40,13 +44,24 @@ class Home extends Component {
       $('#welcome').show()
     }
     this.title = TodoStore.title
-    console.log('tha title ', this.title)
     $('#list-title').val(String(this.title))
+    console.log(TodoStore.update)
+    this.update = TodoStore.update
+    if (this.update) {
+      $('#update-list').show()
+      $('#save-list').hide()
+    } else {
+      $('#update-list').hide()
+      $('#save-list').show()
+    }
+
   }
 
   // removes event listener to prevent memory leak
   componentWillUnmount() {
     TodoStore.removeListener('change', this.getTodos)
+    $('#update-list').hide()
+    $('#save-list').show()
   }
 
   // gets all current list items
@@ -72,7 +87,7 @@ class Home extends Component {
   }
 
   saveListFailure() {
-    $('#list-message').text('List not saved')
+    $('#list-message').text('List Not Saved')
   }
 
   onSaveList() {
@@ -85,6 +100,39 @@ class Home extends Component {
     this.saveList(data)
       .then(this.saveListSuccess)
       .catch(this.saveListFailure)
+  }
+
+  updateList(data) {
+    console.log('in updatelist ', this.props.key)
+      return $.ajax({
+        url: 'https://dbm-todo-api.herokuapp.com/lists/' + TodoStore.id,
+        method: 'PATCH',
+        headers: {
+          Authorization: 'Token token=' + this.user.token
+        },
+        data
+      })
+  }
+
+  updateListSuccess() {
+    $('#list-message').text('List Updated')
+  }
+
+  updateListFailure() {
+    $('#list-message').text('List Not Updated')
+  }
+
+  onUpdateList() {
+    const data = {
+      list: {
+        title: document.getElementById('list-title').value,
+        items: this.state.todos
+      }
+    }
+    console.log('in onUpdateList ', TodoStore.id)
+    this.updateList(data)
+      .then(this.updateListSuccess)
+      .catch(this.updateListFailure)
   }
 
   createToDo(e) {
@@ -108,16 +156,17 @@ class Home extends Component {
       return (
         <div className='todo'>
           <form className='add-form' onSubmit={this.createToDo.bind(this)}>
-            <input className='form-control form-control-lg add' id='new-do' />
+            <input className='form-control form-control-lg add' id='new-do' placeholder='Add a new item'/>
             <button type='submit' className='btn btn-outline-success add-item add'>Add item</button>
           </form>
-          <input type='text' id='list-title' className='list-title form-control form-control-lg' placeholder='To Do List' />
+          <input type='text' id='list-title' className='list-title form-control form-control-lg' placeholder='To Do List' autofocus='autofocus' />
           <ul className='todos'>
           <h4 id='list-message'> </h4>
           {TodoComponents}
           <br />
           <button id='clear-list' className='btn list-btn' onClick={this.clearList.bind(this)}>Clear</button>
           <button id='save-list' className='btn list-btn' onClick={this.onSaveList.bind(this)}>Save</button>
+          <button id='update-list' className='btn list-btn' onClick={this.onUpdateList.bind(this)}>Update</button>
           </ul>
         </div>
       )

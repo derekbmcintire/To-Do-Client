@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import * as ListActions from '../Actions/ListActions'
 import {Link} from 'react-router-dom'
+import UserStore from '../stores/userstores'
 const $ = require('jquery')
 
 class List extends Component {
@@ -8,19 +9,46 @@ class List extends Component {
     super()
   }
 
+  onDeleteList() {
+    this.deleteList()
+      .then(this.deleteSuccess)
+      .catch(console.error)
+  }
+
+  deleteList() {
+    return $.ajax({
+      url: 'https://dbm-todo-api.herokuapp.com/lists/' + this.props.id,
+      method: 'DELETE',
+      headers: {
+        Authorization: 'Token token=' + UserStore.user.token
+      }
+    })
+  }
+
+deleteSuccess() {
+  console.log('success')
+}
+
   render() {
-    const { title, items } = this.props
+    const { title, items, id } = this.props
+    const deleteIcon = "\u2716"
     return (
-      <Link to="/"><li className='item row' onClick={() => {
-        ListActions.showThisList(this.props.list.items, this.props.list.title)
-      }}>
+    <li className='item row' onClick={() => {
+      console.log(this.props.id)
+      ListActions.showThisList(this.props.list.items, this.props.list.title, this.props.id)
+    } }>
+      <Link to="/">
         <div className='col-xs-8'>
-          <h4 className='list'>{title}</h4>
+          <h4 className='list' key={this.props.id}>{title}</h4>
         </div>
-        <div className='col-xs-4'>
+        <div className='col-xs-2'>
         <h5>Items: {items.length}</h5>
         </div>
-      </li></Link>
+        </Link>
+        <div className='col-xs-2'>
+        <button className='delete' onClick={this.onDeleteList.bind(this)}>{deleteIcon}</button>
+        </div>
+      </li>
     )
   }
 }

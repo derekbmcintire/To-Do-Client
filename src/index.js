@@ -4,6 +4,7 @@ import {Route, BrowserRouter as Router} from 'react-router-dom'
 import '../node_modules/bootstrap/dist/css/bootstrap.min.css'
 import './index.css';
 import Header from './components/Header'
+import Banner from './components/Banner'
 import Home from './components/Home'
 import Sign from './components/Sign'
 import Lists from './components/Lists'
@@ -16,6 +17,7 @@ class App extends React.Component {
       <Router>
         <div>
           <Header />
+          <Banner />
           <hr/>
           <Route exact path="/todo-front/" component={Home} />
           <Route path="/todo-front/sign-in" component={Sign} />
