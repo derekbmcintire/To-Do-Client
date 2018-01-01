@@ -16,8 +16,11 @@ class Home extends Component {
   }
 
   componentWillMount() {
-    this.onGetLists()
     ListStore.on('change', this.getUserLists)
+  }
+
+  componentDidMount() {
+    this.onGetLists()
   }
 
   componentWillUnmount() {
@@ -31,7 +34,6 @@ class Home extends Component {
   }
 
   getUserLists() {
-    this.onGetLists()
       this.setState({
         lists: ListStore.getAll()
       })

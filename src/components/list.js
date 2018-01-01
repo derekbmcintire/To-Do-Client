@@ -33,13 +33,13 @@ deleteSuccess() {
     const { title, items, id } = this.props
     const deleteIcon = "\u2716"
     return (
-    <li className='item row'>
+    <li className='item row' onClick={() => {
+      console.log(this.props.id)
+      ListActions.showThisList(this.props.list.items, this.props.list.title, this.props.id)
+    } }>
       <Link to="/">
         <div className='col-xs-8'>
-          <h4 className='list' key={this.props.id} onClick={() => {
-            console.log(this.props.id)
-            ListActions.showThisList(this.props.list.items, this.props.list.title, this.props.id)
-          }}>{title}</h4>
+          <h4 className='list' key={this.props.id}>{title}</h4>
         </div>
         <div className='col-xs-2'>
         <h5>Items: {items.length}</h5>

@@ -49,7 +49,7 @@ class Todo extends Component {
     return (
       <li className='item row' >
       <div className='col-xs-10'>
-        <h3 className='list-item' onClick={this.completeItem.bind(this)}><span className={String(this.props.complete)}>{icon}</span> {text} </h3>
+        <h4 className='list-item' onClick={this.completeItem.bind(this)}><span className={String(this.props.complete)}>{icon}</span> {text} </h4>
         </div>
         <div className='col-xs-1'>
           <button className='up' onClick={this.onMoveUp.bind(this)}>^</button>

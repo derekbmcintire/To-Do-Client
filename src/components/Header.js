@@ -63,7 +63,7 @@ class Header extends Component {
 
   render() {
     return (
-      <div className="row">
+      <div className="row header">
         <div className="col-xs-4">
           <h5 id='signed-in-as'>Signed in as: {UserStore.user.username}</h5>
         </div>

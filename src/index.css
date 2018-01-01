@@ -1,6 +1,9 @@
+a {
+  color: black;
+}
+
 body {
   margin: 0;
-  padding: 50px;
   font-family: sans-serif;
   -webkit-touch-callout: none; /* iOS Safari */
     -webkit-user-select: none; /* Safari */
@@ -31,9 +34,16 @@ h2 {
   margin-top: -3px;
 }
 
+.banner {
+  background: url('https://images.pexels.com/photos/64778/pexels-photo-64778.jpeg?w=1260&h=750&auto=compress&cs=tinysrgb');
+  background-size: cover;
+  background-position: top;
+  height: 400px;
+}
+
 .btn-outline-success {
-  border: 2px solid green;
-  color: green;
+  border: 2px solid #a2bd80;
+  color: #a2bd80;
 }
 
 .nav-item {
@@ -41,37 +51,45 @@ h2 {
 }
 
 .current-page {
-  background-color: green;
+  background-color: #a2bd80;
 }
 
 .delete {
   background-color: transparent;
   border: none;
   box-shadow: none;
-  color: #C67171;
+  color: #bc604c;
   float: right;
   font-size: 16px;
   padding: 4px;
 }
 
 .delete:hover {
-  background-color: #C67171;
+  background-color: #bc604c;
   border-radius: 3px;
   color: white;
 }
 
 .true {
-  color: #71C671;
+  color: #a2bd80;
 }
 
 .false {
-  color: #C67171;
+  color: #bc604c;
+}
+
+.header {
+  background-color: #e7eeff;
+  border-bottom: 2px solid black;
+  margin: 0 auto;
+  position: fixed;
+  width: 100%;
 }
 
 .item {
   border-bottom: 1px solid black;
   /* border-bottom-left-radius: 5px; */
-  cursor: pointer;
+
   margin: 5px auto;
   max-width: 600px;
   list-style-type: none;
@@ -83,6 +101,10 @@ h2 {
   background-color: white;
 }
 
+.list {
+  cursor: pointer;
+}
+
 .list-btn {
   border: 1px solid black;
   border-radius: 3px;
@@ -90,11 +112,12 @@ h2 {
 }
 
 .list-btn:hover {
-  background-color: #71C671;
+  background-color: #a2bd80;
 }
 
 .list-item {
   display: inline;
+  cursor: pointer;
 }
 
 .list-title {
@@ -107,7 +130,7 @@ h2 {
 }
 
 .lists-div {
-  background-color: #FFFACD;
+  background-color: #e7eeff;
   border: 2px solid black;
   border-radius: 4px;
   margin: 0 auto;
@@ -121,7 +144,7 @@ h2 {
 }
 
 #new-do {
-  border: 2px solid green;
+  border: 2px solid #a2bd80;
   margin-right: 10px;
   padding-right: 90px;
   width: 80%;
@@ -148,7 +171,7 @@ h2 {
 }
 
 .todos {
-  background-color: #FFFACD;
+  background-color: #e7eeff;
   border: 2px solid black;
   border-radius: 4px;
   min-height: 500px;
@@ -159,19 +182,19 @@ h2 {
   background-color: transparent;
   border: none;
   box-shadow: none;
-  color: green;
+  color: #a2bd80;
   /* float: right; */
   font-size: 16px;
   padding: 4px;
 }
 
 .up:hover {
-  background-color: #C67171;
+  background-color: #bc604c;
   border-radius: 3px;
   color: white;
 }
 
 .up-check {
-  color: green;
+  color: #a2bd80;
   font-size: 30px;
 }
