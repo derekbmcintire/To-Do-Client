@@ -137,9 +137,13 @@ class Home extends Component {
 
   createToDo(e) {
     e.preventDefault()
-    const item = document.getElementById('new-do').value
-    TodoActions.createToDo(item)
-    document.getElementById('new-do').value = ''
+    if (!document.getElementById('new-do').value) {
+      $('#list-message').text('Please enter a list item')
+    } else {
+      const item = document.getElementById('new-do').value
+      TodoActions.createToDo(item)
+      document.getElementById('new-do').value = ''
+    }
   }
 
   render() {

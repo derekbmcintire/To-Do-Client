@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import * as ListActions from '../Actions/ListActions'
 import {Link} from 'react-router-dom'
 import UserStore from '../stores/userstores'
+
 const $ = require('jquery')
 
 class List extends Component {
@@ -26,6 +27,7 @@ class List extends Component {
   }
 
 deleteSuccess() {
+  
   console.log('success')
 }
 
