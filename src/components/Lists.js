@@ -26,6 +26,7 @@ class Lists extends Component {
   // when component renders, it runs onGetLists
   componentDidMount() {
     this.onGetLists()
+    console.log(List.params)
   }
 
   // removes change listener so when component re-renders multiple listeners

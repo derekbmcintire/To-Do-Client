@@ -2,7 +2,6 @@
 // installing anything!
 import { EventEmitter } from 'events'
 import dispatcher from '../dispatcher'
-const $ = require('jquery')
 
 // this is storing data for the todo list
 class TodoStore extends EventEmitter {
@@ -17,11 +16,7 @@ class TodoStore extends EventEmitter {
     completeItem(id) {
       this.todos.forEach((todo) => {
         if (todo.id === id) {
-          if (todo.complete === true) {
-            todo.complete = false
-          } else {
-            todo.complete = true
-          }
+          todo.complete ? todo.complete = false : todo.complete = true
         }
       })
       this.emit('change')

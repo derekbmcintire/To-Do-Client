@@ -195,7 +195,7 @@ class Home extends Component {
             <input className='form-control form-control-lg add' id='new-do' placeholder='Add a new item'/>
             <button type='submit' className='btn btn-outline-success add-item add'>Add item</button>
           </form>
-          <input type='text' id='list-title' className='list-title form-control form-control-lg' placeholder='To Do List' autofocus='autofocus' />
+          <input type='text' id='list-title' className='list-title form-control form-control-lg' placeholder='To Do List' autoFocus='autofocus' />
           <ul className='todos'>
           <h4 id='list-message'> </h4>
           {TodoComponents}

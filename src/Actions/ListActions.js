@@ -19,11 +19,3 @@ export function showThisList(data, title, id) {
     data
   })
 }
-
-// tells the dispatcher to dispatch a 'DELETE_LISTS' action
-// sends dispatch to any store that listens
-export function deleteList() {
-  dispatcher.dispatch({
-    type: 'DELTE_LIST'
-  })
-}

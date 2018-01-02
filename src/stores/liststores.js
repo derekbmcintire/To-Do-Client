@@ -12,6 +12,7 @@ class ListStore extends EventEmitter {
     getLists(data) {
       this.lists = data
       this.emit('change')
+      console.log('getLists change emitted')
     }
 
     getAll() {
@@ -22,9 +23,9 @@ class ListStore extends EventEmitter {
     if (action.type === 'GET_LISTS') {
       this.getLists(action.data)
     }
-    if (action.type === 'DELETE_LIST') {
-      this.getLists()
-    }
+    // if (action.type === 'DELETE_LIST') {
+    //   this.getLists()
+    // }
     }
 }
 

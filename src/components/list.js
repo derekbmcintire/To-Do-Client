@@ -12,9 +12,44 @@ class List extends Component {
     super()
   }
 
+  funky() {
+    console.log('funky')
+  }
+
+  // sends data from get lists ajax request to the ListActions.getLists
+  getListsSuccess(data) {
+    ListActions.getLists(data)
+  }
+
+  // logs an error if getLists fails
+  // need to refactor to display message and remove console.log
+  getListsFailure(error) {
+    console.error(error)
+  }
+
+  // ajax request to get all user lists
+  getLists() {
+    console.log('gets to this.getLists')
+    return $.ajax({
+      url: config.development + '/lists',
+      method: 'GET',
+      headers: {
+        Authorization: 'Token token=' + UserStore.user.token
+      }
+    })
+  }
+
+  // event handler for getting lists
+  onGetLists() {
+    this.getLists()
+      .then(this.getListsSuccess)
+      .catch(this.getListsFailure)
+  }
+
   // deletes a users list
   onDeleteList() {
     this.deleteList()
+      .then(this.onGetLists.bind(this))
       .then(this.deleteSuccess)
       .catch(console.error)
   }
@@ -39,7 +74,7 @@ class List extends Component {
   // component render method
   render() {
     // use ES6 destructuring to create new variables for title, items and id
-    const { title, items, id } = this.props
+    const { title, items } = this.props
     // set delete icon to unicode X character
     const deleteIcon = "\u2716"
     // component return statement
