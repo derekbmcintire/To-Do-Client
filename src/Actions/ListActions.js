@@ -19,3 +19,12 @@ export function showThisList(data, title, id) {
     data
   })
 }
+
+// tells dispatcher to dispatch a 'DELETE_LIST action
+// which will clear the current list, incase the deleted list
+// was open prior to deleting
+export function deleteList() {
+  dispatcher.dispatch({
+    type: 'DELETE_LIST'
+  })
+}

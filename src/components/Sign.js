@@ -17,7 +17,7 @@ class Sign extends Component {
   // ajax request to sign a user in
   signIn(data) {
     return $.ajax({
-    url: config.development + '/sign-in',
+    url: config.production + '/sign-in',
     method: 'POST',
     data
   })
@@ -54,7 +54,7 @@ class Sign extends Component {
         .then(() => {
           // after sign in success, programmatically push the user to
           // the home view
-          this.props.history.push('/')
+          this.props.history.push('/todo-front/')
         })
         .catch(this.signInFailure)
 
@@ -63,7 +63,7 @@ class Sign extends Component {
   // sign up ajax request
   signUp(data) {
     return $.ajax({
-      url: config.development + '/sign-up',
+      url: config.production + '/sign-up',
       method: 'POST',
       data
     })

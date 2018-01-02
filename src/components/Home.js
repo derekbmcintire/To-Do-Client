@@ -88,7 +88,7 @@ class Home extends Component {
   // save current list ajax request
   saveList(data) {
       return $.ajax({
-        url: config.development + '/lists',
+        url: config.production + '/lists',
         method: 'POST',
         headers: {
           Authorization: 'Token token=' + this.user.token
@@ -126,7 +126,7 @@ class Home extends Component {
   updateList(data) {
     console.log('in updatelist ', this.props.key)
       return $.ajax({
-        url: config.development + '/lists/' + TodoStore.id,
+        url: config.production + '/lists/' + TodoStore.id,
         method: 'PATCH',
         headers: {
           Authorization: 'Token token=' + this.user.token

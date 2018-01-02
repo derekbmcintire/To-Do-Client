@@ -71,7 +71,7 @@ class Lists extends Component {
   // ajax request to get all user lists
   getLists() {
     return $.ajax({
-      url: config.development + '/lists',
+      url: config.production + '/lists',
       method: 'GET',
       headers: {
         Authorization: 'Token token=' + UserStore.user.token

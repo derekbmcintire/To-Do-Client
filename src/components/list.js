@@ -31,7 +31,7 @@ class List extends Component {
   getLists() {
     console.log('gets to this.getLists')
     return $.ajax({
-      url: config.development + '/lists',
+      url: config.production + '/lists',
       method: 'GET',
       headers: {
         Authorization: 'Token token=' + UserStore.user.token
@@ -51,13 +51,14 @@ class List extends Component {
     this.deleteList()
       .then(this.onGetLists.bind(this))
       .then(this.deleteSuccess)
+      .then(ListActions.deleteList)
       .catch(console.error)
   }
 
   // ajax request to delete a list from the database
   deleteList() {
     return $.ajax({
-      url: config.development + '/lists/' + this.props.id,
+      url: config.production + '/lists/' + this.props.id,
       method: 'DELETE',
       headers: {
         Authorization: 'Token token=' + UserStore.user.token
@@ -82,7 +83,7 @@ class List extends Component {
     <li className='item row' >
         <div className='col-xs-8'>
         {/* pass an anonymous function as a click handler and invoke ListActions.showThisList passing the items, title and id of the list that was clicked on - this will set the current state to the saved list and the Link tag around the h4 tag will push the view back to the Home component*/}
-          <Link to="/"><h4 onClick={() => {
+          <Link to="/todo-front/"><h4 onClick={() => {
             ListActions.showThisList(this.props.list.items, this.props.list.title, this.props.id)
           } } className='list' key={this.props.id}>{title}</h4></Link>
         </div>

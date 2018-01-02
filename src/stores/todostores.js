@@ -55,7 +55,6 @@ class TodoStore extends EventEmitter {
       this.todos = []
       this.title = 'To Do List'
       this.update = false
-      console.log(this.update)
       this.emit('change')
     }
 
@@ -89,6 +88,9 @@ class TodoStore extends EventEmitter {
       this.clearList()
     }
     if (action.type === 'CLEAR_LIST') {
+      this.clearList()
+    }
+    if (action.type === 'DELETE_LIST') {
       this.clearList()
     }
     if (action.type === 'POPULATE_LIST') {
