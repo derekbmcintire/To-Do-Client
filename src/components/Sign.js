@@ -115,7 +115,7 @@ class Sign extends Component {
     return(
       <div className='sign'>
       <div className='sign-in'>
-        <h3>Sign In</h3>
+        <h3 className='text-center'>Sign In</h3>
         <br />
         <form>
           <div className="form-group">
