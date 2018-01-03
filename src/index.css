@@ -154,15 +154,21 @@ h2 {
 
 .sign {
   margin: 0 auto;
-  width: 300px;
+  margin-bottom: 30px;
+  padding: 10px;
+  width: 360px;
 }
 
 .sign-in {
   border: 1px solid black;
+  border-radius: 5px;
+  padding: 25px;
 }
 
 .sign-up {
   border: 1px solid black;
+  border-radius: 5px;
+  padding: 25px;
 }
 
 .status {

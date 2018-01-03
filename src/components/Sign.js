@@ -116,6 +116,7 @@ class Sign extends Component {
       <div className='sign'>
       <div className='sign-in'>
         <h3>Sign In</h3>
+        <br />
         <form>
           <div className="form-group">
             <label>Email address</label>
@@ -133,6 +134,7 @@ class Sign extends Component {
       <br />
       <div className='sign-up'>
         <h3>Sign Up</h3>
+        <br />
         <form id='sign-up-form'>
           <div className="form-group">
             <label>Email address</label>
