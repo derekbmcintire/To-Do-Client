@@ -129,6 +129,8 @@ class Sign extends Component {
         </form>
       </div>
       <br />
+      <h3>or</h3>
+      <br />
       <div className='sign-up'>
         <h3>Sign Up</h3>
         <form id='sign-up-form'>

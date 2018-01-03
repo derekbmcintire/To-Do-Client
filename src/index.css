@@ -157,6 +157,13 @@ h2 {
   width: 400px;
 }
 
+.sign-in {
+  border: 1px solid black;
+}
+
+.sign-up {
+  border: 1px solid black;
+}
 
 .status {
   display: inline-block;
