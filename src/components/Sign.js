@@ -115,7 +115,7 @@ class Sign extends Component {
     return(
       <div className='sign'>
       <div className='sign-in'>
-        <h3 className='text-center'>Sign In</h3>
+        <h3>Sign In</h3>
         <br />
         <form>
           <div className="form-group">
@@ -130,7 +130,7 @@ class Sign extends Component {
         </form>
       </div>
       <br />
-      <h3>or</h3>
+      <h3 className="text-center">or</h3>
       <br />
       <div className='sign-up'>
         <h3>Sign Up</h3>
